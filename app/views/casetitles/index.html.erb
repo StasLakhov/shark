@@ -7,15 +7,59 @@
   </tr>
 
   <% @casetitles.each do |t| %>
-      <tr>
-        <td><%= t.title %></td>
-        <td><%= t.summary %></td>
-        <td><%= link_to 'Edit', edit_casetitle_path(t) %></td>
-        <td><%= link_to 'Delete', t, method: :delete, data: {confirm: 'Are you sure ?'} %></td>
-      </tr>
+    <tr>
+      <td><%= t.title %></td>
+      <td><%= t.summary %></td>
+      <td><%= link_to 'Edit', edit_casetitle_path(t) %></td>
+      <td><%= link_to 'Delete', t, method: :delete, data: {confirm: 'Are you sure ?'} %></td>
+    </tr>
   <% end %>
 
-  <%= link_to 'Create New Case', new_casetitle_path %><br>
-
 </table>
+
+<%= link_to 'Create New Case', new_casetitle_path %><br>
+
+<h2>Test Case</h2>
+
+<% @casetitle.testcases.each do |testcase| %>
+  <p>
+    <strong>Expected Result:</strong>
+    <%= testcase.expresult %>
+  </p>
+
+  <p>
+    <strong>Environment:</strong>
+    <%= testcase.envir %>
+  </p>
+
+  <p>
+    <strong>Tester:</strong>
+    <%= testcase.tester %>
+  </p>
+
+<% end %>
+
+<h2>Add New Case:</h2>
+<%= form_for([@casetitle, @casetitle.testcase.build]) do |f| %>
+  <p>
+    <%= f.label :Expectedresult %><br>
+    <%= f.text_field :expresult %>
+  </p>
+
+  <p>
+    <%= f.label :Environment %><br>
+    <%= f.text_area :envir %>
+  </p>
+
+  <p>
+    <%= f.label :Tester %><br>
+    <%= f.text_area :tester %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
 
