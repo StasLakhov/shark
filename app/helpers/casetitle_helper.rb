@@ -1,0 +1,2 @@
+module CasetitleHelper
+end
