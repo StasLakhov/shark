@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161226103605) do
+ActiveRecord::Schema.define(version: 20161226121628) do
 
   create_table "casetitles", force: :cascade do |t|
     t.string   "title"
     t.text     "summary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "test_cases", force: :cascade do |t|
+    t.text     "expresult"
+    t.text     "envir"
+    t.string   "tester"
+    t.integer  "casetitle_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["casetitle_id"], name: "index_test_cases_on_casetitle_id"
   end
 
 end
