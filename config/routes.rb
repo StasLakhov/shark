@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resources :casetitles
+  resources :casetitles do
+    resources :testcases
+  end
 end

@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20161226121628) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "casetitles", force: :cascade do |t|
     t.string   "title"
     t.text     "summary"
@@ -19,14 +22,15 @@ ActiveRecord::Schema.define(version: 20161226121628) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "test_cases", force: :cascade do |t|
+  create_table "testcases", force: :cascade do |t|
     t.text     "expresult"
     t.text     "envir"
     t.string   "tester"
     t.integer  "casetitle_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["casetitle_id"], name: "index_test_cases_on_casetitle_id"
+    t.index ["casetitle_id"], name: "index_testcases_on_casetitle_id", using: :btree
   end
 
+  add_foreign_key "testcases", "casetitles"
 end
